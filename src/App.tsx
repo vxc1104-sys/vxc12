@@ -1,17 +1,18 @@
 import React from 'react'
+import WindowManager from './components/WindowManager'
+import MainApplication from './components/MainApplication'
+import { Case } from './lib/supabase'
 
 function App() {
+  const handleOpenCase = (caseData: Case) => {
+    // Use the global window management function
+    ;(window as any).openCaseWindow(caseData)
+  }
+
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">
-          Welcome to React + TypeScript + Vite
-        </h1>
-        <p className="text-gray-600">
-          Start building your amazing application!
-        </p>
-      </div>
-    </div>
+    <WindowManager>
+      <MainApplication onOpenCase={handleOpenCase} />
+    </WindowManager>
   )
 }
 
